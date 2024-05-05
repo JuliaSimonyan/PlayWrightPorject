@@ -1,20 +1,22 @@
-import { test as base, type Page, type Locator } from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { selectors } from '../constants/loginPageConstants';
 
-
 export class LoginPage {
-  page: Page;
-  readonly emailInpit: Locator;
+  private page: Page;
+  readonly emailInput: Locator;
+  readonly passwordInput: Locator;
+  readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    // this.emailInpit = page.locator(selectors.emailInput)
-    this.emailInpit = page.getByPlaceholder("Email input")
+    this.emailInput = page.getByLabel("Email Address");
+    this.passwordInput = page.getByLabel("Password");
+    this.loginButton = page.getByRole("button", {name: 'Sign In'});
   }
 
-  async login(email, pass) {
-    await this.emailInpit.fill(email),
-    //pass
-    //button click
+  async login(email: string, password: string): Promise<void> {
+    await this.emailInput.fill(email);
+    await this.passwordInput.fill(password);
+    await this.loginButton.click();
   }
 }

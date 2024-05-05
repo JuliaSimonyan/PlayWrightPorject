@@ -39,7 +39,7 @@ import path from 'path';
   //   },
   // });
 
-  export const logedInTest = base.extend<{}, {basePage: string}>({
+  export const logedInTest = base.extend<{}, {basePage: BasePage}>({
     basePage: [async ({browser}, use) => {
       console.log(":::::1")
       const page = await browser.newPage()
