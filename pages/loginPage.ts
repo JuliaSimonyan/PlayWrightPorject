@@ -1,5 +1,5 @@
 import { Page, Locator } from '@playwright/test';
-import { selectors } from '../constants/loginPageConstants';
+import { SubActivityPage } from './subActivityPage';
 
 export class LoginPage {
   private page: Page;
@@ -14,9 +14,10 @@ export class LoginPage {
     this.loginButton = page.getByRole("button", {name: 'Sign In'});
   }
 
-  async login(email: string, password: string): Promise<void> {
+  async login(email: string = "julieta.simonyan@eif.am", password: string="jul555817J"): Promise<SubActivityPage> {
     await this.emailInput.fill(email);
     await this.passwordInput.fill(password);
     await this.loginButton.click();
+    return new SubActivityPage(this.page)
   }
 }

@@ -1,10 +1,12 @@
 import { Page, Locator } from '@playwright/test';
+import { SideBarObject } from '../objects/sideBarObject';
 
 
 export class BasePage {
-  page: Page;
+  protected page: Page;
 
   constructor(page: Page) {
     this.page = page;
+
   }
 }
